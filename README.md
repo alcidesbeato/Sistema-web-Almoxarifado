@@ -28,7 +28,7 @@ Este repositório é responsável pelo sistema web, sendo ele o Front-End para o
 ## Autores
 [Alcides Gomes Beato Neto](https://github.com/alcidesbeato)
 
-[André Alves Pinto]()
+[André Alves Pinto](https://github.com/1996aap)
 
 [Derek Freire Quaresma](https://github.com/derekfq)
 
@@ -36,4 +36,4 @@ Este repositório é responsável pelo sistema web, sendo ele o Front-End para o
 
 [Rafael Silva Barbon](https://github.com/RafaelBarbon)
 
-[Richard do Carmo Lopes]()
+[Richard do Carmo Lopes](https://github.com/RichardCLopes)

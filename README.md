@@ -5,7 +5,10 @@
 ![Ubuntu](https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white)
 ![MAC](https://img.shields.io/badge/MAC-000000?style=for-the-badge&logo=macos&logoColor=white)
 ![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)
+![Android](https://img.shields.io/badge/android-3DDC84?style=for-the-badge&logo=android&logoColor=white)
+![IOs](https://img.shields.io/badge/ios-000000?style=for-the-badge&logo=ios&logoColor=white)
 
+![AndroidStudio](https://img.shields.io/badge/android_studio-3DDC84?style=for-the-badge&logo=androidstudio&logoColor=white)
 ![FireBase](https://img.shields.io/badge/FireBase-FFCA28?style=for-the-badge&logo=firebase&logoColor=white)
 ![PostGreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
 ![RabbitMQ](https://img.shields.io/badge/RabbitMQ-FF6600?style=for-the-badge&logo=rabbitmq&logoColor=white)
@@ -15,15 +18,14 @@
 ![Jupyter](https://img.shields.io/badge/Jupyter-F37626?style=for-the-badge&logo=jupyter&logoColor=white)
 ![Next.Js](https://img.shields.io/badge/Next.Js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
 ![Node.Js](https://img.shields.io/badge/Node.Js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
-![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=white)
 
 ## Descrição
 Este repositório é responsável pelo sistema web, sendo ele o Front-End para os funcionários.
 
 ## Outros Repositórios
+* [Aplicativo](https://github.com/RichardCLopes/QRCode_Reader)
 * [Banco de dados](https://github.com/alcidesbeato/Redes-Banco)
-
-## Documentação
+* [Documentação](https://github.com/h-ssiqueira/Supermercado)
 
 ## Autores
 [Alcides Gomes Beato Neto](https://github.com/alcidesbeato)

@@ -24,7 +24,7 @@ Este repositório é responsável pelo sistema web, sendo ele o Front-End para o
 
 ## Outros Repositórios
 * [Aplicativo](https://github.com/RichardCLopes/QRCode_Reader)
-* [Banco de dados](https://github.com/alcidesbeato/Redes-Banco)
+* [Banco de dados](https://github.com/alcidesbeato/Redes-backend)
 * [Documentação](https://github.com/h-ssiqueira/Supermercado)
 
 ## Autores

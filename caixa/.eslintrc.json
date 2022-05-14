@@ -1,0 +1,4 @@
+{
+  //error higlight
+  "extends": ["eslint:recommended","next", "next/core-web-vitals"]
+}

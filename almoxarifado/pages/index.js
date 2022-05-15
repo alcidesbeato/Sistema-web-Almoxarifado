@@ -28,7 +28,8 @@ import {
         cart: { cartItems },
       } = state;
       const updateCartHandler= async (item,quantity) =>{
-          const { data } = await axios.get(`localhost:3030/api/produto`);
+          const { data } = await axios.get('http://localhost:3030/api/produtos');
+          console.log(data);
           if (data.countInStock <  quantity) {
             window.alert('Item fora de estoque');
             return;
@@ -43,6 +44,11 @@ import {
       }
       return (
         <Layout title="Produtos">
+                             <Button
+                              variant="contained"
+                              color="secondary"
+                              onClick={() => updateCartHandler()}
+                            ></Button>
           <Typography component="h1" variant="h1">
             Produtos
           </Typography>

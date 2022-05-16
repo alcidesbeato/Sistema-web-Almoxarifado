@@ -40,7 +40,7 @@ export default function Layout({ title, description, children }) {
         {/* Se houver algum titulo usa o valor de title - nome da loja, se não só o nome da loja 
          o parametro entre crase é chamado Template String , ele substitui a necessidade do uso de ""+"" 
          quando ocorre quando juntamos uma string com uma variavel*/}
-        <title>{title ? `${title}-Caixa` : 'Caixa'}</title>
+        <title>{title ? `${title}-Almoxarifado` : 'Almoxarifado'}</title>
 
         {description && <meta name="description" content={description} />}
       </Head>
@@ -51,7 +51,7 @@ export default function Layout({ title, description, children }) {
             <NextLink href="/" passHref>
               {/*Hook do nome do site para FrontPage*/}
               <Link>
-                <Typography className={classes.brand}>Caixa</Typography>
+                <Typography className={classes.brand}>Almoxarifado</Typography>
               </Link>
             </NextLink>
           </Toolbar>

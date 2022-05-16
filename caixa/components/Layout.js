@@ -40,7 +40,7 @@ export default function Layout({ title, description, children }) {
         {/* Se houver algum titulo usa o valor de title - nome da loja, se não só o nome da loja 
          o parametro entre crase é chamado Template String , ele substitui a necessidade do uso de ""+"" 
          quando ocorre quando juntamos uma string com uma variavel*/}
-        <title>{title ? `${title}-Almoxarifado` : 'Almoxarifado'}</title>
+        <title>{title ? `${title}-caixa` : 'caixa'}</title>
 
         {description && <meta name="description" content={description} />}
       </Head>

@@ -7,48 +7,38 @@ import {
     TableRow,
     TableCell,
     TableBody,
-    Link,
     MenuItem,
     Select,
     Button,
-    Card,
-    ListItem,
-    List,
   } from '@material-ui/core';
-  import React, { useContext } from 'react';
+  import * as React from 'react';
   import Layout from '../components/Layout';
-  import { Store } from '../utils/Store';
-  import NextLink from 'next/link';
-  import Image from 'next/image';
   import axios from 'axios'
   
-  export default function cartScreen() {
-      const { state,dispatch } = useContext(Store)
-      const {
-        cart: { cartItems },
-      } = state;
-      const updateCartHandler= async (item,quantity) =>{
-          const { data } = await axios.get('http://localhost:3030/api/produtos');
-          console.log(data);
-          if (data.countInStock <  quantity) {
-            window.alert('Item fora de estoque');
-            return;
-          }
-          dispatch({
-            type: 'CART_ADD_ITEM',
-            payload: { ...item, quantity},
-          });
-      }
-      const removeItemHandler = (item) =>{
-          dispatch({type:'CART_REMOVE_ITEM', payload: item });
-      }
+  export default function cartScreen(props) {
+      const [Quantidade,setQuantidade] =  React.useState();
+      const cartItems=JSON.stringify(props);
+      const teste = JSON.parse(cartItems);
+    
+      const updateCartHandler = async (item, quantity) => {
+        const  data2  = await axios.get('http://localhost:3030/api/produtos');
+        console.log(data2);
+        if (data2.quantidade < quantity) {
+          window.alert('Item fora de estoque');
+          return;
+        }
+        else{
+          setQuantidade(quantity);
+        }
+
+    }
+      const removeItem = async (item) => {
+        var input = document.querySelector("#"+item.nome);
+        item.quantidade = input.value;
+        await axios.put('http://localhost:3030/api/local/'+item.id,item);
+      };
       return (
         <Layout title="Produtos">
-                             <Button
-                              variant="contained"
-                              color="secondary"
-                              onClick={() => updateCartHandler()}
-                            ></Button>
           <Typography component="h1" variant="h1">
             Produtos
           </Typography>
@@ -58,54 +48,34 @@ import {
                   <Table>
                     <TableHead>
                       <TableRow>
-                        <TableCell>Imagen</TableCell>
                         <TableCell>Nome</TableCell>
                         <TableCell align="right">Quantidade</TableCell>
                         <TableCell align="right">Remover</TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      {cartItems.map((item) => (
-                        <TableRow key={item._id}>
+                      {teste.data.map((item) => (
+                        <TableRow key={item.id}>
                           <TableCell>
-                            <NextLink href={`/product/${item.slug}`} passHref>
-                              <Link>
-                                <Image
-                                  src={item.image}
-                                  alt={item.name}
-                                  width={50}
-                                  height={50}
-                                ></Image>
-                              </Link>
-                            </NextLink>
-                          </TableCell>
-  
-                          <TableCell>
-                            <NextLink href={`/product/${item.slug}`} passHref>
-                              <Link>
-                                <Typography>{item.name}</Typography>
-                              </Link>
-                            </NextLink>
+                                <Typography>{item.nome}</Typography>
                           </TableCell>
                           <TableCell align="right">
-                            <Select
-                              value={item.quantity}
-                              onChange={(e) =>
-                                updateCartHandler(item, e.target.value)
-                              }
-                            >
-                              {[...Array(item.countInStock).keys()].map((x) => (
-                                <MenuItem key={x + 1} value={x + 1}>
-                                  {x + 1}
-                                </MenuItem>
-                              ))}
-                            </Select>
+                          <Typography>{[Array(item.quantidade)]}</Typography>
+                          <input
+                           className="mb-4 border-b-2"
+                           id={item.nome}
+                           name="quantidade"
+                           type="text"
+                           autocomplete="quantidade"
+                           required
+                          />
+
                           </TableCell>
                           <TableCell align="right">
                             <Button
                               variant="contained"
                               color="secondary"
-                              onClick={() => removeItemHandler(item)}
+                              onClick={() => removeItem(item)}
                             >
                               x
                             </Button>
@@ -119,4 +89,13 @@ import {
             </Grid>
         </Layout>
       );
+  }
+
+  export async function getServerSideProps() {
+    const { data } = await axios.get('http://localhost:3030/api/produtos');
+    return {
+      props: {
+        data
+      },
+    }
   }

@@ -10,22 +10,13 @@ import {
   Link,
   ThemeProvider,
   CssBaseline,
-  Switch,
-  Badge,
-  Button,
-  Menu,
-  MenuItem,
 } from '@material-ui/core';
 import useStyles from '../utils/styles';
-import { Store } from '../utils/Store';
-import Cookies from 'js-cookie';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 
 export default function Layout({ title, description, children }) {
   const router = useRouter();
-  const { state, dispatch } = useContext(Store);
-  const { darkMode, cart, userInfo } = state; //usado na createMuiTreme
   const theme = createTheme({
     typography: {
       h1: {

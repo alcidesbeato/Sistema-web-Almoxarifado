@@ -32,8 +32,6 @@ export default function Layout({ title, description, children }) {
     },
   });
   const classes = useStyles();
-
-  const [anchorEl, setAnchorEl] = useState(null);
   return (
     <div>
       <Head>

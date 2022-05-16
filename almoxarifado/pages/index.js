@@ -7,8 +7,6 @@ import {
     TableRow,
     TableCell,
     TableBody,
-    MenuItem,
-    Select,
     Button,
   } from '@material-ui/core';
   import * as React from 'react';
@@ -19,7 +17,7 @@ import {
 
       const cartItems=JSON.stringify(props);
       const teste = JSON.parse(cartItems);
-      console.log(cartItems);
+
       const MoverItem = async (item) => {
         var input = document.querySelector("#"+item.nome);
         var auxQuantidade = item.quantidade;
@@ -27,23 +25,29 @@ import {
         alert("Valor invalido")
         else{
           let value = parseInt(input.value,10);
-          let quantidadetotalPrateleira = (item.quantidade - value);
-          console.log('quantidade total:',quantidadetotalPrateleira);
+          let quantidadetotalAlmoxarifado = (item.quantidade - value);
+          console.log('quantidade total:',quantidadetotalAlmoxarifado);
 
-          const aux = parseInt(quantidadetotalPrateleira,10);
+          const qtdPt = parseInt(quantidadetotalAlmoxarifado,10);
           const id = item.id;
           const sla = id.toString();
+
+          const { data2 } = await axios.get('http://localhost:3030/api/local/id',id);
+          const teste1=JSON.stringify(data2);
+          const teste2 = JSON.parse(teste1);
+          console.log('teste='+teste2);
+        
 
         const jsonPrateleira = {
           id : sla,
           nome: item.nome,
-          quantidade : aux,
+          quantidade : qtdPt,
         };
 
         const jsonAlmoxarifado = {
           id : sla,
           nome: item.nome,
-          quantidade : aux,
+          quantidade : qtdAlm,
         };
 
         await axios.put('http://localhost:3030/api/estoque/',jsonAlmoxarifado);
@@ -79,7 +83,7 @@ import {
                            id={item.nome}
                            name="quantidade"
                            type="text"
-                           autocomplete="quantidade"
+                           autoComplete="quantidade"
                            required
                           />
 

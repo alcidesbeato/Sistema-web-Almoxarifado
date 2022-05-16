@@ -36,7 +36,11 @@ export default function cartScreen(props) {
       var input = document.querySelector("#"+item.nome);
       console.log(quantidadetotal);
       console.log(item);
-
+      var auxQuantidade = item.quantidade;
+      if(input.value >auxQuantidade){
+        alert("Valor invalido");
+      }
+      else{
       let value = parseInt(input.value,10);
 
       let quantidadetotal = (item.quantidade - value);
@@ -54,6 +58,7 @@ export default function cartScreen(props) {
 
       console.log('JSON', json);
       await axios.put('http://localhost:3030/api/local/caixa',json);
+      }
     };
     return (
       <Layout title="Produtos">

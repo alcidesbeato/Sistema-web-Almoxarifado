@@ -16,36 +16,38 @@ import {
   import axios from 'axios'
   
   export default function cartScreen(props) {
-      const [Quantidade,setQuantidade] =  React.useState();
+
       const cartItems=JSON.stringify(props);
       const teste = JSON.parse(cartItems);
-    
-      const updateCartHandler = async (item, quantity) => {
-        const  data2  = await axios.get('http://localhost:3030/api/local');
-        console.log(data2);
-        if (data2.quantidade < quantity) {
-          window.alert('Item fora de estoque');
-          return;
-        }
-        else{
-          setQuantidade(quantity);
-        }
-
-    }
-      const removeItem = async (item) => {
+      console.log(cartItems);
+      const MoverItem = async (item) => {
         var input = document.querySelector("#"+item.nome);
         var auxQuantidade = item.quantidade;
         if(input.value > auxQuantidade)
         alert("Valor invalido")
         else{
-        const json = {
-          id : item.id,
+          let value = parseInt(input.value,10);
+          let quantidadetotalPrateleira = (item.quantidade - value);
+          console.log('quantidade total:',quantidadetotalPrateleira);
+
+          const aux = parseInt(quantidadetotalPrateleira,10);
+          const id = item.id;
+          const sla = id.toString();
+
+        const jsonPrateleira = {
+          id : sla,
           nome: item.nome,
-          quantidade : input.value
+          quantidade : aux,
         };
 
-        await axios.put('http://localhost:3030/api/estoque/',item);
-        await axios.put('http://localhost:3030/api/local/',item);
+        const jsonAlmoxarifado = {
+          id : sla,
+          nome: item.nome,
+          quantidade : aux,
+        };
+
+        await axios.put('http://localhost:3030/api/estoque/',jsonAlmoxarifado);
+        await axios.put('http://localhost:3030/api/local/',jsonPrateleira);
       }
       };
       return (
@@ -61,7 +63,7 @@ import {
                       <TableRow>
                         <TableCell>Nome</TableCell>
                         <TableCell align="right">Quantidade</TableCell>
-                        <TableCell align="right">Remover</TableCell>
+                        <TableCell align="right">Mover</TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
@@ -71,7 +73,7 @@ import {
                                 <Typography>{item.nome}</Typography>
                           </TableCell>
                           <TableCell align="right">
-                          <Typography>{[Array(item.quantidade)]}</Typography>
+                          <Typography>{item.quantidade}</Typography>
                           <input
                            className="mb-4 border-b-2"
                            id={item.nome}
@@ -86,7 +88,7 @@ import {
                             <Button
                               variant="contained"
                               color="secondary"
-                              onClick={() => removeItem(item)}
+                              onClick={() => MoverItem(item)}
                             >
                               x
                             </Button>
@@ -103,7 +105,7 @@ import {
   }
 
   export async function getServerSideProps() {
-    const { data } = await axios.get('http://localhost:3030/api/produtos');
+    const { data } = await axios.get('http://localhost:3030/api/estoque');
     return {
       props: {
         data

@@ -34,9 +34,26 @@ export default function cartScreen(props) {
   }
     const removeItem = async (item) => {
       var input = document.querySelector("#"+item.nome);
-      item.quantidade = input.value;
+      console.log(quantidadetotal);
       console.log(item);
-      await axios.put('http://localhost:3030/api/local/',item);
+
+      let value = parseInt(input.value,10);
+
+      let quantidadetotal = (item.quantidade - value);
+      console.log('quantidade total:', quantidadetotal);
+
+      const aux = parseInt(quantidadetotal,10);
+      const id = item.id;
+      const sla = id.toString();
+
+      const json ={
+        id: sla,
+        nome: item.nome,
+        quantidade: aux,
+      }
+
+      console.log('JSON', json);
+      await axios.put('http://localhost:3030/api/local/caixa',json);
     };
     return (
       <Layout title="Produtos">
@@ -93,7 +110,7 @@ export default function cartScreen(props) {
 }
 
 export async function getServerSideProps() {
-  const { data } = await axios.get('http://localhost:3030/api/produtos');
+  const { data } = await axios.get('http://localhost:3030/api/local');
   return {
     props: {
       data

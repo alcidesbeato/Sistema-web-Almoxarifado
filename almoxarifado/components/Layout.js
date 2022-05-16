@@ -54,15 +54,6 @@ export default function Layout({ title, description, children }) {
                 <Typography className={classes.brand}>Caixa</Typography>
               </Link>
             </NextLink>
-            {/*esse div vai ocupar todo o width para jogar os outros divs no final
-          para isso a classe grow*/}
-            <div className={classes.grow}></div>
-            <div>
-              {/*Hook para carrinho e login*/}
-              <NextLink href="/cart" passHref>
-                <Link>Carrinho</Link>
-              </NextLink>
-            </div>
           </Toolbar>
         </AppBar>
         <Container className={classes.main}>{children}</Container>

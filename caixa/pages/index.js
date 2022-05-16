@@ -35,7 +35,8 @@ export default function cartScreen(props) {
     const removeItem = async (item) => {
       var input = document.querySelector("#"+item.nome);
       item.quantidade = input.value;
-      await axios.put('http://localhost:3030/api/local/'+item.id,item);
+      console.log(item);
+      await axios.put('http://localhost:3030/api/local/',item);
     };
     return (
       <Layout title="Produtos">

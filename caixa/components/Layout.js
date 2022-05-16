@@ -10,22 +10,13 @@ import {
   Link,
   ThemeProvider,
   CssBaseline,
-  Switch,
-  Badge,
-  Button,
-  Menu,
-  MenuItem,
 } from '@material-ui/core';
 import useStyles from '../utils/styles';
-import { Store } from '../utils/Store';
-import Cookies from 'js-cookie';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 
 export default function Layout({ title, description, children }) {
   const router = useRouter();
-  const { state, dispatch } = useContext(Store);
-  const { darkMode, cart, userInfo } = state; //usado na createMuiTreme
   const theme = createTheme({
     typography: {
       h1: {
@@ -49,7 +40,7 @@ export default function Layout({ title, description, children }) {
         {/* Se houver algum titulo usa o valor de title - nome da loja, se não só o nome da loja 
          o parametro entre crase é chamado Template String , ele substitui a necessidade do uso de ""+"" 
          quando ocorre quando juntamos uma string com uma variavel*/}
-        <title>{title ? `${title}-Caixa` : 'Caixa'}</title>
+        <title>{title ? `${title}-Almoxarifado` : 'Almoxarifado'}</title>
 
         {description && <meta name="description" content={description} />}
       </Head>
@@ -63,15 +54,6 @@ export default function Layout({ title, description, children }) {
                 <Typography className={classes.brand}>Caixa</Typography>
               </Link>
             </NextLink>
-            {/*esse div vai ocupar todo o width para jogar os outros divs no final
-          para isso a classe grow*/}
-            <div className={classes.grow}></div>
-            <div>
-              {/*Hook para carrinho e login*/}
-              <NextLink href="/cart" passHref>
-                <Link>Carrinho</Link>
-              </NextLink>
-            </div>
           </Toolbar>
         </AppBar>
         <Container className={classes.main}>{children}</Container>

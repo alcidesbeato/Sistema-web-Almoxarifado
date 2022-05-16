@@ -21,7 +21,7 @@ import {
       const teste = JSON.parse(cartItems);
     
       const updateCartHandler = async (item, quantity) => {
-        const  data2  = await axios.get('http://localhost:3030/api/produtos');
+        const  data2  = await axios.get('http://localhost:3030/api/local');
         console.log(data2);
         if (data2.quantidade < quantity) {
           window.alert('Item fora de estoque');
@@ -34,8 +34,19 @@ import {
     }
       const removeItem = async (item) => {
         var input = document.querySelector("#"+item.nome);
-        item.quantidade = input.value;
-        await axios.put('http://localhost:3030/api/local/'+item.id,item);
+        var auxQuantidade = item.quantidade;
+        if(input.value > auxQuantidade)
+        alert("Valor invalido")
+        else{
+        const json = {
+          id : item.id,
+          nome: item.nome,
+          quantidade : input.value
+        };
+
+        await axios.put('http://localhost:3030/api/estoque/',item);
+        await axios.put('http://localhost:3030/api/local/',item);
+      }
       };
       return (
         <Layout title="Produtos">

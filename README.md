@@ -1,4 +1,4 @@
-# Sitema Web Almoxarifado
+# Sistema Web Almoxarifado
 
 ![GitHub Repository Size](https://img.shields.io/github/repo-size/alcidesbeato/Sistema-web-Almoxarifado?label=Repository%20Size&style=flat-square)
 

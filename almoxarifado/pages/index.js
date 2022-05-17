@@ -28,16 +28,16 @@ import {
           let quantidadetotalAlmoxarifado = (item.quantidade - value);
           const qtdAlm = parseInt(quantidadetotalAlmoxarifado,10);
           const id = item.id;
-          const sla = id.toString();        
+          const idString = id.toString();        
 
           const jsonPrateleira = {
-            id : sla,
+            id : idString,
             nome: item.nome,
             quantidade : value,
           };
 
           const jsonAlmoxarifado = {
-            id : sla,
+            id : idString,
             nome: item.nome,
             quantidade : qtdAlm,
           };

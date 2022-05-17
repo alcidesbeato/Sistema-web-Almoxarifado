@@ -12,7 +12,7 @@ import {
   import * as React from 'react';
   import Layout from '../components/Layout';
   import axios from 'axios'
-  
+
   export default function Almoxarifado(props) {
 
       const Produtos=JSON.stringify(props);
@@ -30,20 +30,14 @@ import {
           const id = item.id;
           const idString = id.toString();        
 
-          const jsonPrateleira = {
-            id : idString,
-            nome: item.nome,
-            quantidade : value,
-          };
-
           const jsonAlmoxarifado = {
             id : idString,
             nome: item.nome,
             quantidade : qtdAlm,
+            quantidadeAnterior: value
           };
 
-        await axios.put('http://localhost:3030/api/estoque/',jsonAlmoxarifado);
-        await axios.put('http://localhost:3030/api/local/',jsonPrateleira);
+          await axios.put('http://localhost:3030/api/estoque/deposito',jsonAlmoxarifado);
         }
       };
       return (

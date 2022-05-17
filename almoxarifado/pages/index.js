@@ -13,16 +13,16 @@ import {
   import Layout from '../components/Layout';
   import axios from 'axios'
   
-  export default function cartScreen(props) {
+  export default function Almoxarifado(props) {
 
-      const cartItems=JSON.stringify(props);
-      const teste = JSON.parse(cartItems);
+      const Produtos=JSON.stringify(props);
+      const ArrProdutos = JSON.parse(Produtos);
 
       const MoverItem = async (item) => {
         var input = document.querySelector("#"+item.nome);
-        var auxQuantidade = item.quantidade;
-        if(input.value > auxQuantidade)
-        alert("Valor invalido")
+
+        if(input.value > item.quantidade)
+          alert("Valor invalido")
         else{
           let value = parseInt(input.value,10);
           let quantidadetotalAlmoxarifado = (item.quantidade - value);
@@ -30,21 +30,21 @@ import {
           const id = item.id;
           const sla = id.toString();        
 
-        const jsonPrateleira = {
-          id : sla,
-          nome: item.nome,
-          quantidade : value,
-        };
+          const jsonPrateleira = {
+            id : sla,
+            nome: item.nome,
+            quantidade : value,
+          };
 
-        const jsonAlmoxarifado = {
-          id : sla,
-          nome: item.nome,
-          quantidade : qtdAlm,
-        };
+          const jsonAlmoxarifado = {
+            id : sla,
+            nome: item.nome,
+            quantidade : qtdAlm,
+          };
 
         await axios.put('http://localhost:3030/api/estoque/',jsonAlmoxarifado);
         await axios.put('http://localhost:3030/api/local/',jsonPrateleira);
-      }
+        }
       };
       return (
         <Layout title="Produtos">
@@ -63,7 +63,7 @@ import {
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      {teste.data.map((item) => (
+                      {ArrProdutos.data.map((item) => (
                         <TableRow key={item.id}>
                           <TableCell>
                                 <Typography>{item.nome}</Typography>

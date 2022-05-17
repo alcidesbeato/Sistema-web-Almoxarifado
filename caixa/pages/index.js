@@ -7,57 +7,36 @@ import {
   TableRow,
   TableCell,
   TableBody,
-  MenuItem,
-  Select,
   Button,
 } from '@material-ui/core';
 import * as React from 'react';
 import Layout from '../components/Layout';
 import axios from 'axios'
 
-export default function cartScreen(props) {
-    const [Quantidade,setQuantidade] =  React.useState();
-    const cartItems=JSON.stringify(props);
-    const teste = JSON.parse(cartItems);
-  
-    const updateCartHandler = async (item, quantity) => {
-      const  data2  = await axios.get('http://localhost:3030/api/produtos');
-      console.log(data2);
-      if (data2.quantidade < quantity) {
-        window.alert('Item fora de estoque');
-        return;
-      }
-      else{
-        setQuantidade(quantity);
-      }
+export default function Caixa(props) {
 
-  }
+    const Produtos = JSON.stringify(props);
+    const ArrProdutos = JSON.parse(Produtos);
+  
     const removeItem = async (item) => {
       var input = document.querySelector("#"+item.nome);
-      console.log(quantidadetotal);
-      console.log(item);
-      var auxQuantidade = item.quantidade;
-      if(input.value >auxQuantidade){
+
+      if(input.value >item.quantidade){
         alert("Valor invalido");
       }
       else{
-      let value = parseInt(input.value,10);
+        let value = parseInt(input.value,10);
+        let quantidadeTotal = (item.quantidade - value);
+        const qtd = parseInt(quantidadeTotal,10);
+        const id = item.id;
+        const idString = id.toString();
 
-      let quantidadetotal = (item.quantidade - value);
-      console.log('quantidade total:', quantidadetotal);
-
-      const aux = parseInt(quantidadetotal,10);
-      const id = item.id;
-      const sla = id.toString();
-
-      const json ={
-        id: sla,
-        nome: item.nome,
-        quantidade: aux,
-      }
-
-      console.log('JSON', json);
-      await axios.put('http://localhost:3030/api/local/caixa',json);
+        const json ={
+          id: idString,
+          nome: item.nome,
+          quantidade: qtd,
+        }
+        await axios.put('http://localhost:3030/api/local/caixa',json);
       }
     };
     return (
@@ -77,7 +56,7 @@ export default function cartScreen(props) {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {teste.data.map((item) => (
+                    {ArrProdutos.data.map((item) => (
                       <TableRow key={item.id}>
                         <TableCell>
                               <Typography>{item.nome}</Typography>

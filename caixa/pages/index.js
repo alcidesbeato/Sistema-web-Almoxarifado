@@ -62,7 +62,7 @@ export default function Caixa(props) {
                               <Typography>{item.nome}</Typography>
                         </TableCell>
                         <TableCell align="right">
-                        <Typography>{[Array(item.quantidade)]}</Typography>
+                        <Typography>quantidade na prateleira={item.quantidade}</Typography>
                         <input
                          className="mb-4 border-b-2"
                          id={item.nome}

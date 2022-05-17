@@ -69,7 +69,7 @@ import {
                                 <Typography>{item.nome}</Typography>
                           </TableCell>
                           <TableCell align="right">
-                          <Typography>{item.quantidade}</Typography>
+                          <Typography>qtd no almoxarifado={item.quantidade}</Typography>
                           <input
                            className="mb-4 border-b-2"
                            id={item.nome}

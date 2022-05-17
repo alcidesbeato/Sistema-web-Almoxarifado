@@ -26,22 +26,14 @@ import {
         else{
           let value = parseInt(input.value,10);
           let quantidadetotalAlmoxarifado = (item.quantidade - value);
-          console.log('quantidade total:',quantidadetotalAlmoxarifado);
-
-          const qtdPt = parseInt(quantidadetotalAlmoxarifado,10);
+          const qtdAlm = parseInt(quantidadetotalAlmoxarifado,10);
           const id = item.id;
-          const sla = id.toString();
-
-          const { data2 } = await axios.get('http://localhost:3030/api/local/id',id);
-          const teste1=JSON.stringify(data2);
-          const teste2 = JSON.parse(teste1);
-          console.log('teste='+teste2);
-        
+          const sla = id.toString();        
 
         const jsonPrateleira = {
           id : sla,
           nome: item.nome,
-          quantidade : qtdPt,
+          quantidade : value,
         };
 
         const jsonAlmoxarifado = {
